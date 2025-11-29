@@ -1,0 +1,10 @@
+# Yazi configuration file
+
+[mgr]
+# Show hidden files (dotfiles) by default
+show_hidden = true
+# Sort directories first
+sort_by = "alphabetical"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
