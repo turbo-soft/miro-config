@@ -180,7 +180,7 @@ bindsym $mod+Ctrl+l move container to output right
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec ghostty
 bindsym $mod+Shift+Return exec google-chrome
 bindsym $mod+x exec grim -g "$(slurp)" - | satty -f - --copy-command "wl-copy -t image/png"
 bindsym $mod+s exec  pavucontrol

@@ -74,7 +74,7 @@ export GOPATH=$HOME/.local/share/go
 export PATH="$PATH:./node_modules/.bin"
 
 export EDITOR="nvim"
-export TERMINAL="alacritty"
+export TERMINAL="ghostty"
 export BROWSER="firefox"
 export QT_QPA_PLATFORMTHEME=qt5ct
 
