@@ -1,2 +1,7 @@
 .claude/
 CLAUDE.md
+
+# Zsh runtime files
+zsh/.config/zsh/.zcompdump*
+zsh/.config/zsh/.zsh_history
+zsh/.config/zsh/.zshrc

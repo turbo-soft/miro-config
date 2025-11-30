@@ -569,12 +569,14 @@ require('lazy').setup({
         desc = 'Open yazi file manager',
       },
     },
-    opts = {
-      open_for_directories = true,
-      keymaps = {
-        show_help = '<f1>',
-      },
-    },
+    config = function()
+      require('yazi').setup({
+        open_for_directories = true,
+        keymaps = {
+          show_help = '<f1>',
+        },
+      })
+    end,
   },
 
   {

@@ -1,6 +1,9 @@
 # Base directory for zsh plugins and completions
 ZSH_DIR="$HOME/.config/zsh"
 
+# Auto-install missing tools (eza, zoxide, etc.)
+[ -f "$ZSH_DIR/auto-install.sh" ] && source "$ZSH_DIR/auto-install.sh"
+
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -252,8 +255,12 @@ compinit
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 
-# Speedy keys
-xset r rate 210 40
+# Speedy keys (Linux only - xset not available on macOS)
+if command -v xset &> /dev/null; then
+    xset r rate 210 40
+fi
 
 # zoxide
-eval "$(zoxide init zsh)"
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
