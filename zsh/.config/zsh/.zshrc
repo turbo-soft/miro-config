@@ -1,1 +1,0 @@
-/home/miro/Miro-OS/zsh/.zshrc
