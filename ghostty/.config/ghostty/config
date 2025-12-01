@@ -1,6 +1,6 @@
 # Font
 font-family = "JetBrainsMono Nerd Font"
-font-size = 14
+font-size = 12
 
 # One Darker color scheme
 background = 1e2127
@@ -25,3 +25,6 @@ palette = 12=61afef
 palette = 13=c678dd
 palette = 14=56b6c2
 palette = 15=ffffff
+
+# Shift+Enter for newline
+keybind = shift+enter=text:\n
