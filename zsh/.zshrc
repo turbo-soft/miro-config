@@ -130,19 +130,10 @@ alias zsh-update-plugins="find "$ZSH_DIR/plugins" -type d -exec test -e '{}/.git
 alias nvimrc='nvim ~/.config/nvim/'
 
 # get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 50 --number 20 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 50 --number 20 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pacman.d/mirrorlist"
 
 alias v="nvim"
-alias i="paru"
-alias vert="xrandr --output HDMI1 --auto --rotate left --output eDP1 --off"
-alias blon="echo -e 'power on' | bluetoothctl"
 
-# Remarkable
-alias remarkable_ssh='ssh root@10.11.99.1'
-alias restream='restream -p'
+
 
 # Colorize grep output
 alias grep='grep --color=auto'
@@ -157,31 +148,11 @@ alias rm='rm -i'
 # easier to read disk
 alias df='df -h'
 alias free='free -m'
+alias cldy='claude --dangerously-skip-permissions'
 
-# get top process eating memory/cpu
-alias psmem='ps auxf | sort -nr -k 4 | head -5'
-alias pscpu='ps auxf | sort -nr -k 3 | head -5'
 
-# gpg encryption
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-
-# For when keys break
-alias archlinx-fix-keys="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
-
-# systemd
-alias mach_list_systemctl="systemctl list-unit-files --state=enabled"
-
-alias m="git checkout master"
-alias s="git checkout stable"
-alias ll="eza -a --icons"
 alias sail="./vendor/bin/sail"
 
-alias cw="~/scripts/set-random-wallpaper.sh"
-
-if [[ $TERM == "xterm-kitty" ]]; then
-    alias ssh="kitty +kitten ssh"
-fi
 
 case "$(uname -s)" in
 Darwin)
@@ -192,7 +163,6 @@ Linux)
     ;;
 esac
 
-# ==================== Prompt ====================
 
 autoload -Uz vcs_info
 
@@ -264,3 +234,7 @@ fi
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
