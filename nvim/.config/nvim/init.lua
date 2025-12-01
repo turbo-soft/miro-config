@@ -189,6 +189,17 @@ require('lazy').setup({
     },
     config = function()
       require('telescope').setup {
+        defaults = {
+          file_ignore_patterns = { '.git/' },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+          live_grep = {
+            additional_args = { '--hidden' },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
