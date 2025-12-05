@@ -370,9 +370,8 @@ input "type:keyboard" {
 # start conky:
 #exec_always --no-startup-id conky
 
-# start a script to setup displays
-# uncomment the next line, use arandr to setup displays and save the file as monitor:
-exec --no-startup-id ~/.config/i3/scripts/monitor.sh
+# Toggle laptop display off (use external monitor only)
+bindsym $mod+m exec ~/.config/sway/scripts/mirror-display.sh
 
 # set wallpaper
 # exec --no-startup-id sleep 2 && nitrogen --restore
