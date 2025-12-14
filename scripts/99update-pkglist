@@ -1,0 +1,1 @@
+DPkg::Post-Invoke { "apt-mark showmanual | sort > /home/miro/miro-config/pkglist/pkglist.txt"; };
