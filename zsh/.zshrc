@@ -1,5 +1,6 @@
 # Base directory for zsh plugins and completions
 ZSH_DIR="$HOME/.config/zsh"
+export PATH="$PATH:/opt/docker-desktop/bin"
 
 # Auto-install missing tools (eza, zoxide, etc.)
 [ -f "$ZSH_DIR/auto-install.sh" ] && source "$ZSH_DIR/auto-install.sh"
@@ -139,6 +140,7 @@ alias v="nvim"
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
+alias ll='exa --long --icons -a'
 
 # confirm before overwriting something
 alias cp="cp -i"
