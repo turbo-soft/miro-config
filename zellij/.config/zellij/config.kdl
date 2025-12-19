@@ -240,8 +240,8 @@ theme "onedark-custom"
 themes {
     onedark-custom {
         fg "#abb2bf"
-        bg "#282c34"
-        black "#282c34"
+        bg "#1e2127"
+        black "#1e2127"
         red "#e06c75"
         green "#98c379"
         yellow "#e5c07b"
