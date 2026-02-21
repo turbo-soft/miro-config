@@ -182,7 +182,8 @@ bindsym $mod+Ctrl+l move container to output right
 # start a terminal
 bindsym $mod+Return exec ghostty
 bindsym $mod+Shift+Return exec google-chrome
-bindsym $mod+x exec grim -g "$(slurp)" - | satty -f - --copy-command "wl-copy -t image/png"
+bindsym $mod+x exec grim -g "$(slurp)" - | wl-copy -t image/png
+bindsym $mod+Shift+x exec grim -g "$(slurp)" - | satty -f - --copy-command "wl-copy -t image/png"
 bindsym $mod+s exec  pavucontrol
 
 # kill focused window
@@ -366,6 +367,7 @@ exec --no-startup-id dex --autostart --environment i3
 input "type:keyboard" {
     xkb_layout "rs"
     xkb_variant "latin"
+    xkb_options "lv3:rwin_switch"
 }
 
 # start conky:

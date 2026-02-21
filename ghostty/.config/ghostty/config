@@ -26,5 +26,9 @@ palette = 13=c678dd
 palette = 14=56b6c2
 palette = 15=ffffff
 
+# Selection color
+selection-background = e5c07b
+selection-foreground = 282c34
+
 # Shift+Enter for newline
 keybind = shift+enter=text:\n
