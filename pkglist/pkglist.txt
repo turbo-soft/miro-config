@@ -79,6 +79,7 @@ login
 m17n-db
 mako-notifier
 meson
+ncdu
 ncurses-base
 ncurses-bin
 neovim

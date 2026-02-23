@@ -1,7 +1,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 vim.o.number = true
 
@@ -94,6 +94,28 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     vim.bo.filetype = 'twig'
   end,
 })
+
+vim.api.nvim_create_user_command('ClaudeModifiedFiles', function()
+  local track_file = vim.fn.resolve('/tmp/claude-modified-files-latest')
+  if vim.fn.filereadable(track_file) == 0 then
+    vim.notify('No Claude-modified files found', vim.log.levels.WARN)
+    return
+  end
+  local lines = vim.fn.readfile(track_file)
+  local files = vim.tbl_filter(function(f)
+    return f ~= '' and vim.fn.filereadable(f) == 1
+  end, lines)
+  if #files == 0 then
+    vim.notify('No Claude-modified files currently exist on disk', vim.log.levels.WARN)
+    return
+  end
+  require('telescope.pickers').new({}, {
+    prompt_title = 'Claude Modified Files',
+    finder = require('telescope.finders').new_table({ results = files }),
+    sorter = require('telescope.config').values.generic_sorter({}),
+    previewer = require('telescope.config').values.file_previewer({}),
+  }):find()
+end, {})
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -243,6 +265,8 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      vim.keymap.set('n', '<leader>sc', '<cmd>ClaudeModifiedFiles<cr>', { desc = '[S]earch [C]laude modified files' })
     end,
   },
 

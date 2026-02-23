@@ -1,5 +1,6 @@
 # Base directory for zsh plugins and completions
 ZSH_DIR="$HOME/.config/zsh"
+
 export PATH="$PATH:/opt/docker-desktop/bin"
 
 # Auto-install missing tools (eza, zoxide, etc.)
@@ -200,6 +201,7 @@ zsh_add_completion "esc/conda-zsh-completion" false
 
 # ==================== Key Bindings ====================
 
+bindkey -s '^g' 'lazygit^M'
 bindkey -s '^o' 'yazi^M'
 bindkey -s '^f' 'zi^M'
 bindkey -s '^s' 'ncdu^M'
@@ -237,13 +239,12 @@ if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
 
-# Auto-rename Zellij tab to current directory
+# Auto-rename Zellij tab to focused pane's directory
 if [[ -n "$ZELLIJ" ]]; then
     zellij_tab_name_update() {
         command zellij action rename-tab "${PWD##*/}" >/dev/null 2>&1
     }
-    chpwd_functions+=(zellij_tab_name_update)
-    zellij_tab_name_update
+    precmd_functions+=(zellij_tab_name_update)
 fi
 
 export NVM_DIR="$HOME/.nvm"
