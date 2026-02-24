@@ -45,6 +45,17 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
+vim.keymap.set('n', '<leader>v', function()
+  if vim.g._diff_open then
+    vim.cmd('windo diffoff')
+    vim.cmd('only')
+    vim.g._diff_open = false
+  else
+    require('gitsigns').diffthis()
+    vim.g._diff_open = true
+  end
+end, { desc = 'Toggle git diff [V]iew' })
+
 vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { desc = '[Q]uit' })
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
