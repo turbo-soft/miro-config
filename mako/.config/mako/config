@@ -1,0 +1,4 @@
+# Mako - invisible notification daemon, only triggers workspace urgency
+max-visible=0
+default-timeout=1
+on-notify=exec ~/.config/mako/on-notify.sh

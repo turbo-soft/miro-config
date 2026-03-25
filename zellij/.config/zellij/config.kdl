@@ -106,9 +106,10 @@ keybinds clear-defaults=true {
         bind "Super [" { PreviousSwapLayout; }
         bind "Super ]" { NextSwapLayout; }
         bind "Super h" { GoToPreviousTab; }
+        bind "Super Shift h" { MoveTab "left"; }
         bind "Super i" { EditScrollback; SwitchToMode "normal"; }
-        bind "Super Shift i" { MoveTab "left"; }
         bind "Super l" { GoToNextTab; }
+        bind "Super Shift l" { MoveTab "right"; }
         bind "Super n" { NewTab; }
         bind "Super o" {
             LaunchOrFocusPlugin "session-manager" {
@@ -116,7 +117,6 @@ keybinds clear-defaults=true {
                 move_to_focused_tab true
             }
         }
-        bind "Super Shift o" { MoveTab "right"; }
         bind "Super q" { Quit; }
         bind "Super w" { CloseTab; }
     }

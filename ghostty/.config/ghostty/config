@@ -32,6 +32,5 @@ selection-foreground = 282c34
 
 # Shift+Enter for newline
 keybind = shift+enter=text:\n
-keybind = ctrl+c=copy_to_clipboard
-keybind = ctrl+shift+c=text:\x03
-keybind = ctrl+v=paste_from_clipboard
+keybind = ctrl+shift+c=copy_to_clipboard
+keybind = ctrl+shift+v=paste_from_clipboard

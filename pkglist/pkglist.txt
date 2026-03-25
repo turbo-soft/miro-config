@@ -3,6 +3,7 @@ antigravity
 apt-transport-https
 avrdude
 avr-libc
+bat
 brightnessctl
 bsdutils
 ca-certificates
