@@ -1,0 +1,102 @@
+{
+  "model": "fable",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify.sh 'Task completed'",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/notify.sh 'Permission required'",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/track-modified-files.sh",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"hookSpecificOutput\":{\"hookEventName\":\"UserPromptSubmit\",\"additionalContext\":\"Be simple and concise. No buzzwords.\"}}'"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/home/miro/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "php-lsp@claude-plugins-official": true
+  },
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "agentPushNotifEnabled": true,
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Bash(sam delete:*) in infrastructure/ — irreversible stack teardown",
+      "Bash(aws dynamodb delete-table:*) — irreversible data loss for orders table"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: turbo-soft (GitHub org; inferred from this repo's remote `github.com:turbo-soft/pineapple-tnf.git` — no separate org config found)",
+      "**Cloud provider(s)**: AWS (Lambda, API Gateway, Cognito, DynamoDB, SSM Parameter Store, SES — per CLAUDE.md and SAM template)",
+      "**Repository visibility**: not queryable here — assuming private per shipped default; treat as private until confirmed",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: AWS SSM Parameter Store (production backend secrets, per CLAUDE.md `{{resolve:ssm:...}}` references); local dev uses `.env`/`.env.local` files (gitignored)",
+      "**Default / protected branches**: not queryable here (gh visibility/rulesets/branch checks unavailable) — treat default branch as protected by convention; verify before force-pushing or bypassing review",
+      "**CI/CD deploy targets**: AWS via `sam deploy` (SAM template at `infrastructure/template.yaml`) for this repo",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine with open internet",
+      "**Source control**: This repo (`turbo-soft/pineapple-tnf`) and its `origin` remote only",
+      "**Trusted internal domains**: pineapple-portal.com, admin.pineapplesms.com, mum6yycu83.execute-api.us-east-1.amazonaws.com (this project's API Gateway host), eapi.demo.alarislabs.com, support.alarislabs.com (Alaris/support endpoints contacted repeatedly in this project's transcripts)",
+      "**Trusted cloud buckets**: pineapple-portal.com (config-derived — not a confirmed upload destination; uploads of local data still require confirmation)",
+      "**Key internal services**: Twilio (number purchase & TFV), Zendesk (support ticketing via API), Alaris eAPI (MO routing/provisioning), Google Sheets (ops tracking, user-OAuth), Cognito (auth), SES (email) — per CLAUDE.md architecture",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: `.env`, `.env.*` (except `.env.example`), `backend/.env`, `frontend/.env.development`, `frontend/.env.production`, `.alaris-eapi.env`/`*.alaris-eapi.env` — credentials (Twilio, AWS, Cognito, SES/Zendesk, Alaris); customer TFN order data (PII: business/contact info) in DynamoDB — share only with cleared engineering/admin audiences",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries `prod` or `production` as a whole word or name segment",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment; also treat `infrastructure/template.yaml` (SAM/Cognito/DynamoDB/API Gateway definitions) as sensitive to blind-apply",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (this project — TFN provisioning web app: Vue 3 + AWS Lambda backend)",
+      "**Trusted repo**: `/home/miro/Workspace/pineapple-tnf` (this checkout) and its `origin` remote (`github.com:turbo-soft/pineapple-tnf.git`)",
+      "**Org-specific CLIs**: `sam` (AWS SAM CLI, used for build/deploy in this project), `aws` (AWS CLI)",
+      "routine under this repo's `backend/` and `frontend/` prefixes: local dev, build, and SAM operations are routine"
+    ]
+  }
+}
